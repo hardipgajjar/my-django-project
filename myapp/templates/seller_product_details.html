@@ -1,0 +1,35 @@
+{% extends 'seller_header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+
+   </head>
+   <body>
+        <div id="about" class="about">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6 offset-md-3">
+                  <div class="titlepage">                     
+                     <h2>My Products</h2>
+                     <span>The Only Source Of Farm Fresh And Orgnaic Fruits </span>
+                  </div>
+               </div>
+            </div>
+           
+            <div class="row">
+               <div class="col-md-4 col-sm-6">
+                  <div class="gallery_img" align="center">
+                     <figure><img src="{{product.product_image.url}}" alt="#"/></figure>
+                  </div>
+                  <h3 align="center">{{product.product_name}}</h3>
+                  <p class="product_price" align="center">{{product.product_price}}<span>Per Kg</span></p>
+                  <h3 align="center">{{product.product_desc}}</h3>               
+                  <p align="center"><a href="{% url 'seller_edit_product' pk=product.pk %}"><button class="send_btn">Edit</button></a></p>
+                  <p align="center"><a href="{% url 'seller_delete_product' pk=product.pk %}"><button class="send_btn">Delete</button></a></p>                  
+               </div> 
+                          
+      {% endblock %}
+   </body>
+</html>

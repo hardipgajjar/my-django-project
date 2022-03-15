@@ -1,0 +1,154 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <style>
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  margin-left:-5px;
+  margin-right:-5px;
+}
+  
+.column {
+  float: left;
+  width: 50%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+</style>
+      
+   </head>
+   <!-- body -->
+   <body class="main-layout inner_page">      
+       <div class="back_re">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="title">
+                          <h2>Cart</h2>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Cart -->
+     <style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+<body>
+<br>
+<br>
+{% if cart %}
+<div class="row">
+   <div class="column">
+   <table style="width:90%" align="center">
+  <tr align="center">
+    <th>Edit</th>
+    <th>Product Image</th>
+    <th>Name</th>
+    <th>Price(Rs/Kg)</th>
+    <th>Quantity</th>
+    <th>Total</th>
+  </tr>
+  {% for i in cart %}
+  <tr align="center">
+     <td>
+        <a href="{% url 'remove_from_cart' pk=i.product.pk %}"style="font-size:24px" class="fa">&#xf00d;</a>
+     </td>
+     <td>
+        <img src="{{i.product.product_image.url}}" width="40" height="30">
+     </td>
+     <td>{{i.product.product_name}}</td>
+     <td>{{i.product.product_price}}</td>
+     <form name="change_qty" method="post" action="{% url 'change_qty' %}">
+      {% csrf_token %}
+      <input type="hidden" name="id" value="{{i.pk}}">
+      <td>
+        <input style="font-size: 15px" type="number" value="{{i.product_qty}}" name="product_qty" onchange="this.form.submit()">
+     </td>       
+     </form>
+     <td>{{i.total_price}}</td>
+  </tr>
+  {% endfor %}
+</table>
+  </div>
+  <div class="column">
+   <table>
+      <tr>
+         <th>Total</th>
+         <th>Price</th>
+      </tr>
+      <tr>
+         <td>Subtotal</td>
+         <td>{{subtotal}}</td>
+      </tr>
+      <tr>   
+         <td>Shipping</td>
+         <td>{{shipping}}</td>
+      </tr>
+      <tr>
+         <td>Total</td>
+         <td>{{netprice}}</td>
+      </tr>      
+   </table>
+   <form name="checkout" method="post" action="{% url 'pay' %}">
+      {% csrf_token %}
+      <input type="hidden" name="amount" value="{{netprice}}">
+      <input type="submit" name="action" value="CheckOut">
+   
+   </form>
+        
+  </div>   
+</div>
+<br>
+<br>
+      <!-- end cart --> 
+
+<!-- <div class="coupon section" align="center">
+   <h3>Apply Coupon</h3>
+   <div class="coupon-form-wrap">
+      <form method="post" action="">
+         {% csrf_token %}
+         <p><input type="text" placehodler="Coupon"></p>
+         <p><input type="submit" value="Apply"></p>         
+      </form>
+   </div>
+   <br>
+   <br> -->
+
+</div>
+{% else %}
+   <h3 align="center" style="color:red; margin-bottom: 100px;margin-top: 50px;font-size: 30px;"><b>Your Cart is empty Continue <a href="{% url 'shop' %}" style="color: green;">Shopping</a></b></h3>
+{% endif %}    
+   </body>
+</html>
+{% endblock %}

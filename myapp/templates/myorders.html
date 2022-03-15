@@ -1,0 +1,61 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+     
+   <div class="back_re">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="title">
+                          <h2>My Orders</h2>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+                 
+      <!-- gallery -->
+      <div  class="gallery">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="titlepage">                   
+                  </div>
+               </div>
+            </div>
+            {% if cart %}
+            {% for i in cart %}
+            <div class="row">
+               <div class="col-lg-3 col-md-6 col-sm-6">
+                  <div id="ho_bo" class="our_products">
+                     <div class="product">
+                        <figure><img src="{{i.product.product_image.url}}" alt="#"/></figure>
+                     </div>
+                     <h3 align="center">{{i.product.product_name}}</h3>
+                     <div align="center">
+                        <span>Rs. {{i.product.product_price}} Per Kg</span>
+                     </div>
+                     <div align="center">
+                        <p>Cart Date:{{i.date}}</p>
+                        <p>Payment Date:{{i.payment_date}}</p>
+                     </div>                                         
+                     <div align="center"><a href="#">Add To Cart</a></div>                     
+                  </div>
+               </div>               
+               </div>
+               {% endfor %}
+               {% else %}
+               <h2 align="center">No Product In Orders</h2> 
+               {% endif %}                                                   
+               </div>              
+            </div>
+         </div>
+      </div>
+      <!-- end gallery -->      
+   </body>
+</html>
+{% endblock %}

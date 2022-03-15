@@ -1,0 +1,60 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+
+   </head>
+   <body>
+      <!-- our products -->
+      <div id="about" class="about">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6 offset-md-3">
+                  <div class="titlepage">
+                     <h2>Our Products</h2>
+                     <span>We grow our products on 100% organic fertilizers only</span>
+                  </div>
+               </div>
+            </div>
+            {% for i in product %}
+            <div class="row">
+               <div class="col-lg-3 col-md-6 col-sm-6">
+                  <div id="ho_bo" class="our_products">
+                     <div class="product">
+                        <figure><img src="{{i.product_image.url}}" alt="#"/></figure>
+                     </div>
+                     <h3>{{i.product_name}}</h3>
+                     <span>Rs. {{i.product_price}} Per Kg</span>
+                     <p>{{i.product_desc}}</p>
+                  </div>
+               </div>               
+               </div>
+               {% endfor %}
+            </div>
+         </div>
+      </div>
+      <!-- end our products -->
+      <!-- using -->
+      <div class="using">
+         <div class="container-fluid">
+            <div class="row d_flex">
+               <div class="col-md-6">
+                  <div class="titlepage">
+                     <h2 >100% Farm Fresh And Organic</h2>
+                     <p>We Do not use any kind of chemical fertilizers for growing our fruits.</p>
+                  </div>
+               </div>
+               <div class="col-md-5 offset-md-1 padding_right0">
+                  <div class="frout_img">
+                     <figure><img src="{% static 'images/frout.png' %}" alt="#"/></figure>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end using -->            
+      {% endblock %}
+   </body>
+</html>

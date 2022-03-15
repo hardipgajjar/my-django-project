@@ -1,0 +1,66 @@
+1. Create a Project Folder and go to that folder in cmd
+
+2. Start a virtual environment by entering : pthon -m venv myvenv
+
+3. Activate script by entering : myvenv\Scripts\activate
+
+4. Install Django in venv by entering : pip install django
+
+5. Start Project by entering : django-admin startproject mysite .  (dot is to get all files in same directory)
+
+6. Start App by entering : django-admin startapp myapp
+
+7. Migrate all by entering : python manage.py migrate
+
+8. Create a super user by entering : python manage.py createsuperuser
+
+9. Register Myapp by entering 'myapp' in mysite settings under installed app section (remember in mysite not in myapp) 
+
+10. Set time zone to 'Asia/Kolkata' in settings in mysite settings
+
+11. Add 'include' library in urls.py of mysite
+
+12. Add myapp.urls path by entering : path('',include('myapp.urls')) in urls.py of mysite
+
+13.Now copy below text from urls.py of mysite,
+
+from django.urls import path,include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('',include('myapp.urls')),
+]
+
+14. And create a new file in myapp (remember not in mysite now) and save it as 'urls.py' and paste above lines in it
+
+15. Now in newly created urls.py remove below lines as its not required in myapp
+path('admin/', admin.site.urls),
+also remove include located in above line
+
+16. now import views by entering : "from . import views"  in urls.py of mysite  
+
+17. Now delete " include('myapp.urls')" and instead of it type below,
+view.index, name='index')
+so new line will be like, " path('',view.index, name='index')," in urls.py of myapp
+
+18. Now create new folder named "templates" in myapp
+
+19. Copy all html files from downloaded template folder to new created templates folder of myapp 
+
+20. create a new folder named 'static' in myapp folder
+
+21. And copy assets folder of downloaded template to static folder
+
+22. Now check all files by running server by entering : python manage.py runserver
+
+23. add static file in index by entering : {% load static %} on top of the index file 
+
+24. add static in href links in index by entering in every href : {% static 'here href link belongs  '%}
+
+25. Do the same thing in javascript files which is located at the end of the page
+
+26. now check the changes made by refreshing index page by ctlr+F5
+
+27. Now to show images enter {% static '' %} in every img src= lines
+
+28.  

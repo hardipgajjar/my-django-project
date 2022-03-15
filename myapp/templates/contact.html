@@ -1,0 +1,64 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+
+   </head>
+   <!-- body -->
+   <body class="main-layout inner_page">
+      <!-- loader  -->
+      <div class="loader_bg">
+         <div class="loader"><img src="{% static 'images/loading.gif' %}" alt="#"/></div>
+      </div>
+      <!-- end loader -->
+      
+     <div class="back_re">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="title">
+                         <h2>Contact Us</h2>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--  contact -->
+
+               <div class="col-md-6 padding_left0",>
+                  <div>
+                    {% if msg %}
+                        <b style="font-size: 20px;color: red;">{{msg}}</b>
+                    {% endif %} 
+                  </div>
+                  <form type="POST" method="post" form id="request" class="main_form"> {% csrf_token %}
+
+                     <div class="row">
+                        <div class="col-md-12 ">
+                           <input class="contactus" placeholder="Name" type="type" name="name">
+                        </div>
+                        <div class="col-md-12">
+                           <input class="contactus" placeholder="Phone" type="type" name="phone">
+                        </div>
+                        <div class="col-md-12">
+                           <input class="contactus" placeholder="Email" type="type" name="email">
+                        </div>
+                        <div class="col-md-12">
+                           <textarea class="textarea" placeholder="Message" type="type" name="message">Message</textarea>
+                        </div>
+                        <div class="col-md-12">
+                           <button class="send_btn">Save</button>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end contact -->
+
+   </body>
+</html>
+{% endblock %}

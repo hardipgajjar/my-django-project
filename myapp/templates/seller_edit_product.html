@@ -1,0 +1,61 @@
+{% extends 'seller_header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+
+   </head>
+   <!-- body -->
+   <body class="main-layout inner_page">
+
+     <div class="back_re">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="title">
+                         <h2>Edit Product</h2>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--  contact -->
+
+
+               <div class="col-md-6 padding_left0",>
+                  <div align="center">
+                    {% if msg %}
+                        <b style="font-size: 20px;color: red;">{{msg}}</b>
+                    {% endif %} 
+                  </div>
+                  <form type="POST" method="post" id="request" class="main_form" action="{% url 'seller_edit_product' pk=product.pk %}" enctype="multipart/form-data">
+                  {% csrf_token %}                 
+                     <div class="row">
+                        <div class="col-md-12 ">
+                           <input class="contactus" placeholder="Product Name" type="type" name="product_name" value="{{product.product_name}}">
+                        </div>
+                        <div class="col-md-12">
+                           <input class="contactus" placeholder="Product Price" type="type" name="product_price" value="{{product.product_price}}">
+                        </div>
+                        <p><img src="{{product.product_image.url}}" width="100px" height="100px"></p>
+                        <div class="col-md-12">
+                           <input class="contactus" placeholder="File" type="file" name="product_image">
+                        </div>
+                        </div>
+                        <div class="col-md-12">
+                           <textarea class="textarea" placeholder="Product Description" type="type" name="product_desc">{{product.product_desc}}</textarea>
+                        </div>                        
+                        <button class="send_btn">Update Product</button>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end contact -->
+
+   </body>
+</html>
+{% endblock %}

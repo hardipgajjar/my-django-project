@@ -1,0 +1,70 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+     
+   <div class="back_re">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="title">
+                          <h2>Product Details</h2>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+                 
+      <!-- gallery -->
+      <div  class="gallery">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="titlepage">                   
+                     <span>Shop Farm Fresh And 100% Organic Fruits</span>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-3 col-md-6 col-sm-6">
+                  <div id="ho_bo" class="our_products">
+                     <div class="product">
+                        <figure><img src="{{product.product_image.url}}" alt="#"/></figure>
+                     </div>
+                     <h3 align="center">{{product.product_name}}</h3>
+                     <div align="center">
+                     </div>
+                     <h3 align="center">{{product.product_desc}}</h3>
+                     <div align="center">
+                        <span>Rs. {{product.product_price}} Per Kg</span>
+                     </div>
+
+                     {% if request.session.email %}
+                     {% if wishlist_flag %}
+                        <div align="center"><a href="{% url 'remove_from_wishlist' %}">Remove From Wishlist</a></div>
+                     {% else %}
+                        <div align="center"><a href="{% url 'add_to_wishlist' pk=product.pk %}">Add to Wishlist</a></div>
+                     {% endif %}                                       
+                     {% if cart_flag %}
+                        <div align="center"><a href="{% url 'remove_from_cart' pk=product.pk %}">Remove From Cart</a></div>
+                     {% else %}
+                        <div align="center"><a href="{% url 'add_to_cart' pk=product.pk %}">Add to Cart</a></div>
+                     {% endif %}
+
+                     {% else %}
+                     <div align="center"><a href="{% url 'login' %}">Login</a></div>
+                     {% endif %}
+                  </div>
+               </div>               
+               </div>
+               </div>              
+            </div>
+         </div>
+      </div>
+      <!-- end gallery -->      
+   </body>
+</html>
+{% endblock %}

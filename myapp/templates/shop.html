@@ -1,0 +1,55 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+     
+   <div class="back_re">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="title">
+                          <h2>Shop</h2>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+                 
+      <!-- gallery -->
+      <div  class="gallery">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="titlepage">                   
+                     <span>Shop Farm Fresh And 100% Organic Fruits</span>
+                  </div>
+               </div>
+            </div>
+            
+            <div class="row">
+               {% for i in product %}
+               <div class="col-md-6 col-lg-6 col-sm-6">
+                  <div id="ho_bo" class="our_products">
+                     <div class="product">
+                        <img style="width:280px; height:auto;" src="{{i.product_image.url}}" alt="#"/>
+                     </div>
+                     <h3 align="center">{{i.product_name}}</h3>
+                     <div align="center">
+                        <span>Rs. {{i.product_price}} Per Kg</span>
+                     </div>                                         
+                     <div align="center"><a href="{% url 'product_details' pk=i.pk %}">Product Details</a></div>
+                  </div>
+               </div>
+               {% endfor %}                         
+               </div>                                           
+               </div>              
+            </div>
+         </div>
+      </div>
+      <!-- end gallery -->      
+   </body>
+</html>
+{% endblock %}
